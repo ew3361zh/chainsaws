@@ -19,6 +19,8 @@ class Chainsawists(Model):
 
 def main():
 
+    create_table()
+
     menu_text = """
     1. Display all records
     2. Add new record
@@ -43,6 +45,22 @@ def main():
         else:
             print('Not a valid selection, please try again')
 
+def create_table():
+    
+    db.connect()
+    db.create_tables([Chainsawists])
+
+    janne = Chainsawists(name='Janne Mustonen', country='Finland', catches=98)
+    janne.save()
+
+    ian = Chainsawists(name='Ian Stewart', country='Canada', catches=94)
+    ian.save()
+
+    aaron = Chainsawists(name='Aaron Gregg', country='Canada', catches=88)
+    aaron.save()
+
+    chad = Chainsawists(name='Chad Taylor', country='USA', catches=78)
+    chad.save()
 
 def display_all_records():
     print('todo display all records')
