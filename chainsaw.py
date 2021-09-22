@@ -41,6 +41,7 @@ def main():
         elif choice == '4':
             delete_record()
         elif choice == '5':
+            Chainsawists.delete().execute() # clear the database for next time
             break
         else:
             print('Not a valid selection, please try again')
