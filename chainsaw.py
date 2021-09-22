@@ -64,7 +64,9 @@ def create_table():
     chad.save()
 
 def display_all_records():
-    print('todo display all records')
+    # print('todo display all records')
+    for chainsawist in Chainsawists.select():
+        print(chainsawist)
 
 
 def add_new_record():
