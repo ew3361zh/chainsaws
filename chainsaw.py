@@ -82,18 +82,26 @@ def add_new_record():
 
 def edit_existing_record():
     display_all_records()
-    edit_record = int(input('What is the number of the record you want to edit? '))
-    id_from_db_check = Chainsawists.get_or_none(id=edit_record)
+    edit_record_id = int(input('What is the number of the record you want to edit? '))
+    id_from_db_check = Chainsawists.get_or_none(id=edit_record_id)
     if not id_from_db_check:
         print('Sorry, there\'s no record that matches that number')
         return
     else:
         edit_catches = int(input('What is the new number of catches? '))
-        Chainsawists.update(catches = edit_catches).where(Chainsawists.id == edit_record).execute()
+        Chainsawists.update(catches = edit_catches).where(Chainsawists.id == edit_record_id).execute()
 
 def delete_record():
     print('todo delete existing record. What if user wants to delete record that does not exist?') 
-    
+    display_all_records()
+    delete_record_id = int(input('What is the number of the record you want to delete? '))
+    id_from_db_check = Chainsawists.get_or_none(id=delete_record_id)
+    if not id_from_db_check:
+        print('Sorry, there\'s no record that matches that number')
+        return
+    else:
+        Chainsawists.delete().where(Chainsawists.id == delete_record_id).execute()
+
 
 if __name__ == '__main__':
     main()
