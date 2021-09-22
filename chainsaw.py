@@ -11,10 +11,10 @@ class Chainsawists(Model):
     catches = IntegerField()
 
     class Meta:
-        database = database
+        database = db
     
-    def _str_(self):
-        return f'{self.id}: {self.name}, {self.country}, {self.age}'
+    def __str__(self):
+        return f'{self.id}: {self.name}, {self.country}, {self.catches}'
 
 
 def main():
@@ -65,8 +65,8 @@ def create_table():
 
 def display_all_records():
     # print('todo display all records')
-    for chainsawist in Chainsawists.select():
-        print(chainsawist)
+    for c in Chainsawists.select():
+        print(c)
 
 
 def add_new_record():
@@ -78,8 +78,10 @@ def add_new_record():
         print('Sorry, that person is already in the database')
         return
     else:
-        country = input('From which country is the chainsawist? ')
-        catches = input('How many catches did they have? ')
+        new_country = input('From which country is the chainsawist? ')
+        new_catches = input('How many catches did they have? ')
+    new_entry = Chainsawists(name=new_name, country=new_country, catches=new_catches)
+    new_entry.save()
 
 def edit_existing_record():
     print('todo edit existing record. What if user wants to edit record that does not exist?') 
