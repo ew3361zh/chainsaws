@@ -6,7 +6,7 @@ from peewee import *
 db = SqliteDatabase('chainsaws.sqlite')
 
 class Chainsawists(Model):
-    name = CharField()
+    name = CharField() # unique = true
     country = CharField()
     catches = IntegerField()
 
@@ -64,32 +64,36 @@ def create_table():
     chad.save()
 
 def display_all_records():
-    # print('todo display all records')
     for c in Chainsawists.select():
         print(c)
 
 
 def add_new_record():
-    # might add user input validation method
-    # print('todo add new record. What if user wants to add a record that already exists?')
-    new_name = input('What is the chainsawist\'s name? ')
-    name_from_db = Chainsawists.get_or_none(name=new_name)
-    if name_from_db:
+    add_name = input('What is the chainsawist\'s name? ')
+    name_from_db_check = Chainsawists.get_or_none(name=add_name) 
+    if name_from_db_check:
         print('Sorry, that person is already in the database')
         return
     else:
-        new_country = input('From which country is the chainsawist? ')
-        new_catches = input('How many catches did they have? ')
-    new_entry = Chainsawists(name=new_name, country=new_country, catches=new_catches)
-    new_entry.save()
+        add_country = input('From which country is the chainsawist? ')
+        add_catches = input('How many catches did they have? ')
+    add_entry = Chainsawists(name=add_name, country=add_country, catches=add_catches)
+    add_entry.save()
 
 def edit_existing_record():
-    print('todo edit existing record. What if user wants to edit record that does not exist?') 
-
+    display_all_records()
+    edit_record = int(input('What is the number of the record you want to edit? '))
+    id_from_db_check = Chainsawists.get_or_none(id=edit_record)
+    if not id_from_db_check:
+        print('Sorry, there\'s no record that matches that number')
+        return
+    else:
+        edit_catches = int(input('What is the new number of catches? '))
+        Chainsawists.update(catches = edit_catches).where(Chainsawists.id == edit_record).execute()
 
 def delete_record():
     print('todo delete existing record. What if user wants to delete record that does not exist?') 
-
+    
 
 if __name__ == '__main__':
     main()
