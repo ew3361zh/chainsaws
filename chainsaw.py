@@ -70,8 +70,16 @@ def display_all_records():
 
 
 def add_new_record():
-    print('todo add new record. What if user wants to add a record that already exists?')
-    
+    # might add user input validation method
+    # print('todo add new record. What if user wants to add a record that already exists?')
+    new_name = input('What is the chainsawist\'s name? ')
+    name_from_db = Chainsawists.get_or_none(name=new_name)
+    if name_from_db:
+        print('Sorry, that person is already in the database')
+        return
+    else:
+        country = input('From which country is the chainsawist? ')
+        catches = input('How many catches did they have? ')
 
 def edit_existing_record():
     print('todo edit existing record. What if user wants to edit record that does not exist?') 
