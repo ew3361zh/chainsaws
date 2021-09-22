@@ -1,6 +1,21 @@
 """
 A menu - you need to add the database and fill in the functions. 
 """
+from peewee import *
+
+db = SqliteDatabase('chainsaws.sqlite')
+
+class Chainsawists(Model):
+    name = CharField()
+    country = CharField()
+    catches = IntegerField()
+
+    class Meta:
+        database = database
+    
+    def _str_(self):
+        return f'{self.id}: {self.name}, {self.country}, {self.age}'
+
 
 def main():
 
