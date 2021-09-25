@@ -1,0 +1,22 @@
+First ran through your example code in the README file:
+whatever' or '1'='1
+' or password like 'a%
+all the way up to 
+' or password like 'e% 
+which logged me in as Bill S Preston (another admin account)
+It turned out I didn't need the username correct at all, just needed to run
+through the passwords using the (' or password like 'a%) SQL code combinations
+
+Next tried to learn more of Bill's password by doing
+' or password like 'ea%
+and was logged in as Bart Simpson
+So now I had 2 different account usernames
+
+I do see how Bill Preston's use of an ! could be helpful but if you have a program
+that is running through every combination of every letter/number/character and getting
+entry at each correct guess until they have the full thing, it seems almost useless
+
+I was curious how a hacker would know when they had the full password and noticed
+that entering 'or password like 'eatmyshorts% still logged me in. But maybe running through
+all the combinations of eatmyshorts% would yield no further logins so they would
+go back to eatmyshorts
